@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Madhav Finance - EMI Accordion</title>
+
+  <!-- Reference image: /mnt/data/4d78fa28-8026-466d-b39e-dfc18990fbb6.png -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --glass-bg: rgba(255,255,255,0.95);
+      --glass-border: rgba(255,255,255,0.18);
+      --glass-shadow: 0 8px 32px rgba(31,38,135,0.08);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:hsl(240 25% 98%);
+      color:hsl(220 20% 10%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-bottom:140px; /* room for fixed footer */
+    }
+
+    .nav-link {
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #00eaff;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: #00eaff;
+            left: 0;
+            bottom: -4px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* ACTIVE — stays cyan */
+        .active {
+            color: #00eaff !important;
+        }
+
+        .active::after {
+            width: 100%;
+            background-color: #00eaff;
+        }
+
+    .container { max-width: 980px; margin: 24px auto; padding: 0 16px; }
+
+    .glass-card-strong{
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border:1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      border-radius: 22px;
+    }
+
+    .header-big{
+      background: linear-gradient(225deg,#00c6fb 0%, #005bea 100%);
+      color:#fff;
+      padding:36px;
+      border-radius:22px;
+      text-align:left;
+      font-weight:700;
+      font-size:40px;
+    }
+
+    .box {
+      margin-top:18px;
+      padding:20px;
+      border-radius:18px;
+    }
+
+    .box-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      cursor:pointer;
+    }
+
+    .box-header .title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .box-header .title svg{width:26px; height:26px; color:#06b6d4;} /* shield icon color */
+
+    .box .title-text{
+      font-size: 30px;
+      font-weight:800;
+      color:#06b6d4;
+      text-transform:uppercase;
+      letter-spacing:0.8px;
+    }
+
+    ion-icon.arrow {
+      font-size:26px;
+      color:#06b6d4;
+      transition: transform 0.28s ease;
+    }
+
+    /* collapsible content */
+    .content {
+      margin-top:16px;
+      overflow:hidden;
+      transition: max-height 0.36s ease, opacity 0.28s ease;
+    }
+
+    .content.hidden { max-height:0; opacity:0; padding-top:0; }
+    .content.open { opacity:1; }
+
+    .detail-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background: rgba(255,255,255,0.6);
+      padding:12px 16px;
+      border-radius:14px;
+      margin-top:12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+      font-size:22px;
+      color:#333;
+    }
+
+    .detail-row .label{ display:flex; align-items:center; gap:12px; color:#525761; font-size:20px;}
+    .detail-row ion-icon { font-size:28px; color:#545a64; }
+
+    /* helper spacing for the list container */
+    .space-y-6 > * + * { margin-top: 18px; }
+
+    /* fixed footer nav */
+    .footer-wrap{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:30px;
+      width:88%;
+      max-width:980px;
+      z-index:60;
+      display:flex;
+      justify-content:center;
+    }
+    .footer{
+      width:100%;
+      background: rgba(255,255,255,0.12);
+      border-radius:16px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+      padding:8px;
+      border:1px solid rgba(255,255,255,0.38);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+      backdrop-filter: blur(5px);
+    }
+    .nav-btn{
+      height:70px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:12px;
+      background: rgba(255,255,255,0.38);
+      color:#6f6f6f;
+    }
+
+    /* small responsive */
+    @media (max-width:520px){
+      .header-big{font-size:32px;padding:28px}
+      .box { padding:16px }
+      .box-header .title svg{width:22px;height:22px}
+      .box .title-text{font-size:18px}
+      .detail-row{font-size:14px;padding:10px}
+      .nav-btn{height:60px}
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+
+
+  <div class="container">
+    <div class="glass-card-strong header-big">Breakdown</div>
+
+    <div class="space-y-6">
+
+      <!-- BOX 1 -->
+      <div class="glass-card-strong box" id="box-1">
+        <div class="box-header" onclick="toggleAccordion(1)">
+          <div class="title">
+            <!-- shield svg as in your original -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <div class="title-text">Upto ₹5,000</div>
+          </div>
+          <ion-icon id="arrow-1" class="arrow" name="chevron-down-outline"></ion-icon>
+        </div>
+
+        <div id="content-1" class="content hidden" style="max-height:0;">
+          <div class="detail-row"><div class="label"><ion-icon name="cash-outline"></ion-icon><div>Loan Amount</div></div><div>₹5,000</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="calendar-outline"></ion-icon><div>Tenure</div></div><div>2 M</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Rate p.a</div></div><div>24%</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="card-outline"></ion-icon><div>EMI</div></div><div>₹2,575</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="bar-chart-outline"></ion-icon><div>Total Interest</div></div><div>₹151</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="receipt-outline"></ion-icon><div>Processing Fee</div></div><div>₹300</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="download-outline"></ion-icon><div>Credited to Customer</div></div><div>₹4,700</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="swap-vertical-outline"></ion-icon><div>Total Repayment (P+I)</div></div><div>₹5,151</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Total Collection (I+F)</div></div><div>₹451</div></div>
+        </div>
+      </div>
+
+      <!-- BOX 2 -->
+      <div class="glass-card-strong box" id="box-2">
+        <div class="box-header" onclick="toggleAccordion(2)">
+          <div class="title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <div class="title-text">Upto ₹10,000</div>
+          </div>
+          <ion-icon id="arrow-2" class="arrow" name="chevron-down-outline"></ion-icon>
+        </div>
+
+        <div id="content-2" class="content hidden" style="max-height:0;">
+          <div class="detail-row"><div class="label"><ion-icon name="cash-outline"></ion-icon><div>Loan Amount</div></div><div>₹10,000</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="calendar-outline"></ion-icon><div>Tenure</div></div><div>2 M</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Rate p.a</div></div><div>22%</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="card-outline"></ion-icon><div>EMI</div></div><div>₹5,138</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="bar-chart-outline"></ion-icon><div>Total Interest</div></div><div>₹276</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="receipt-outline"></ion-icon><div>Processing Fee</div></div><div>₹500</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="download-outline"></ion-icon><div>Credited to Customer</div></div><div>₹9,500</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="swap-vertical-outline"></ion-icon><div>Total Repayment (P+I)</div></div><div>₹10,276</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Total Collection (I+F)</div></div><div>₹776</div></div>
+        </div>
+      </div>
+
+      <!-- BOX 3 -->
+      <div class="glass-card-strong box" id="box-3">
+        <div class="box-header" onclick="toggleAccordion(3)">
+          <div class="title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <div class="title-text">Upto ₹15,000</div>
+          </div>
+          <ion-icon id="arrow-3" class="arrow" name="chevron-down-outline"></ion-icon>
+        </div>
+
+        <div id="content-3" class="content hidden" style="max-height:0;">
+          <div class="detail-row"><div class="label"><ion-icon name="cash-outline"></ion-icon><div>Loan Amount</div></div><div>₹15,000</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="calendar-outline"></ion-icon><div>Tenure</div></div><div>4 M</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Rate p.a</div></div><div>21%</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="card-outline"></ion-icon><div>EMI</div></div><div>₹3,835</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="bar-chart-outline"></ion-icon><div>Total Interest</div></div><div>₹339</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="receipt-outline"></ion-icon><div>Processing Fee</div></div><div>₹700</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="download-outline"></ion-icon><div>Credited to Customer</div></div><div>₹14,300</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="swap-vertical-outline"></ion-icon><div>Total Repayment (P+I)</div></div><div>₹15,339</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Total Collection (I+F)</div></div><div>₹1,039</div></div>
+        </div>
+      </div>
+
+      <!-- BOX 4 -->
+      <div class="glass-card-strong box" id="box-4">
+        <div class="box-header" onclick="toggleAccordion(4)">
+          <div class="title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <div class="title-text">Upto ₹20,000</div>
+          </div>
+          <ion-icon id="arrow-4" class="arrow" name="chevron-down-outline"></ion-icon>
+        </div>
+
+        <div id="content-4" class="content hidden" style="max-height:0;">
+          <div class="detail-row"><div class="label"><ion-icon name="cash-outline"></ion-icon><div>Loan Amount</div></div><div>₹20,000</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="calendar-outline"></ion-icon><div>Tenure</div></div><div>4 M</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Rate p.a</div></div><div>20%</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="card-outline"></ion-icon><div>EMI</div></div><div>₹5,135</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="bar-chart-outline"></ion-icon><div>Total Interest</div></div><div>₹538</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="receipt-outline"></ion-icon><div>Processing Fee</div></div><div>₹1,000</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="download-outline"></ion-icon><div>Credited to Customer</div></div><div>₹19,000</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="swap-vertical-outline"></ion-icon><div>Total Repayment (P+I)</div></div><div>₹20,538</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Total Collection (I+F)</div></div><div>₹1,538</div></div>
+        </div>
+      </div>
+
+      <!-- BOX 5 -->
+      <div class="glass-card-strong box" id="box-5">
+        <div class="box-header" onclick="toggleAccordion(5)">
+          <div class="title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <div class="title-text">Upto ₹25,000</div>
+          </div>
+          <ion-icon id="arrow-5" class="arrow" name="chevron-down-outline"></ion-icon>
+        </div>
+
+        <div id="content-5" class="content hidden" style="max-height:0;">
+          <div class="detail-row"><div class="label"><ion-icon name="cash-outline"></ion-icon><div>Loan Amount</div></div><div>₹25,000</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="calendar-outline"></ion-icon><div>Tenure</div></div><div>5 M</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Rate p.a</div></div><div>19%</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="card-outline"></ion-icon><div>EMI</div></div><div>₹4,079</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="bar-chart-outline"></ion-icon><div>Total Interest</div></div><div>₹475</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="receipt-outline"></ion-icon><div>Processing Fee</div></div><div>₹1,200</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="download-outline"></ion-icon><div>Credited to Customer</div></div><div>₹23,800</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="swap-vertical-outline"></ion-icon><div>Total Repayment (P+I)</div></div><div>₹25,475</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Total Collection (I+F)</div></div><div>₹1,675</div></div>
+        </div>
+      </div>
+
+      <!-- BOX 6 -->
+      <div class="glass-card-strong box" id="box-6">
+        <div class="box-header" onclick="toggleAccordion(6)">
+          <div class="title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <div class="title-text">Upto ₹30,000</div>
+          </div>
+          <ion-icon id="arrow-6" class="arrow" name="chevron-down-outline"></ion-icon>
+        </div>
+
+        <div id="content-6" class="content hidden" style="max-height:0;">
+          <div class="detail-row"><div class="label"><ion-icon name="cash-outline"></ion-icon><div>Loan Amount</div></div><div>₹30,000</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="calendar-outline"></ion-icon><div>Tenure</div></div><div>6 M</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Rate p.a</div></div><div>18%</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="card-outline"></ion-icon><div>EMI</div></div><div>₹4,493</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="bar-chart-outline"></ion-icon><div>Total Interest</div></div><div>₹957</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="receipt-outline"></ion-icon><div>Processing Fee</div></div><div>₹1,500</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="download-outline"></ion-icon><div>Credited to Customer</div></div><div>₹28,500</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="swap-vertical-outline"></ion-icon><div>Total Repayment (P+I)</div></div><div>₹30,957</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Total Collection (I+F)</div></div><div>₹2,456</div></div>
+        </div>
+      </div>
+
+      <!-- BOX 7 -->
+      <div class="glass-card-strong box" id="box-7">
+        <div class="box-header" onclick="toggleAccordion(7)">
+          <div class="title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <div class="title-text">Upto ₹35,000</div>
+          </div>
+          <ion-icon id="arrow-7" class="arrow" name="chevron-down-outline"></ion-icon>
+        </div>
+
+        <div id="content-7" class="content hidden" style="max-height:0;">
+          <div class="detail-row"><div class="label"><ion-icon name="cash-outline"></ion-icon><div>Loan Amount</div></div><div>₹35,000</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="calendar-outline"></ion-icon><div>Tenure</div></div><div>12 M</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Rate p.a</div></div><div>18%</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="card-outline"></ion-icon><div>EMI</div></div><div>₹3,311</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="bar-chart-outline"></ion-icon><div>Total Interest</div></div><div>₹7,736</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="receipt-outline"></ion-icon><div>Processing Fee</div></div><div>₹1,750</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="download-outline"></ion-icon><div>Credited to Customer</div></div><div>₹33,250</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="swap-vertical-outline"></ion-icon><div>Total Repayment (P+I)</div></div><div>₹42,736</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Total Collection (I+F)</div></div><div>₹9,486</div></div>
+        </div>
+      </div>
+
+      <!-- BOX 8 -->
+      <div class="glass-card-strong box" id="box-8">
+        <div class="box-header" onclick="toggleAccordion(8)">
+          <div class="title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <div class="title-text">Upto ₹40,000</div>
+          </div>
+          <ion-icon id="arrow-8" class="arrow" name="chevron-down-outline"></ion-icon>
+        </div>
+
+        <div id="content-8" class="content hidden" style="max-height:0;">
+          <div class="detail-row"><div class="label"><ion-icon name="cash-outline"></ion-icon><div>Loan Amount</div></div><div>₹40,000</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="calendar-outline"></ion-icon><div>Tenure</div></div><div>12 M</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Rate p.a</div></div><div>18%</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="card-outline"></ion-icon><div>EMI</div></div><div>₹3,667</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="bar-chart-outline"></ion-icon><div>Total Interest</div></div><div>₹4,006</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="receipt-outline"></ion-icon><div>Processing Fee</div></div><div>₹2,000</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="download-outline"></ion-icon><div>Credited to Customer</div></div><div>₹38,000</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="swap-vertical-outline"></ion-icon><div>Total Repayment (P+I)</div></div><div>₹44,006</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Total Collection (I+F)</div></div><div>₹6,006</div></div>
+        </div>
+      </div>
+
+      <!-- BOX 9 -->
+      <div class="glass-card-strong box" id="box-9">
+        <div class="box-header" onclick="toggleAccordion(9)">
+          <div class="title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <div class="title-text">Upto ₹50,000</div>
+          </div>
+          <ion-icon id="arrow-9" class="arrow" name="chevron-down-outline"></ion-icon>
+        </div>
+
+        <div id="content-9" class="content hidden" style="max-height:0;">
+          <div class="detail-row"><div class="label"><ion-icon name="cash-outline"></ion-icon><div>Loan Amount</div></div><div>₹50,000</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="calendar-outline"></ion-icon><div>Tenure</div></div><div>12 M</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Rate p.a</div></div><div>18%</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="card-outline"></ion-icon><div>EMI</div></div><div>₹4,584</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="bar-chart-outline"></ion-icon><div>Total Interest</div></div><div>₹5,008</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="receipt-outline"></ion-icon><div>Processing Fee</div></div><div>₹5,000</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="download-outline"></ion-icon><div>Credited to Customer</div></div><div>₹45,000</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="swap-vertical-outline"></ion-icon><div>Total Repayment (P+I)</div></div><div>₹55,008</div></div>
+          <div class="detail-row"><div class="label"><ion-icon name="trending-up-outline"></ion-icon><div>Total Collection (I+F)</div></div><div>₹10,008</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script>
+ // Auto highlight active page link
+    const links = document.querySelectorAll(".nav-link");
+    const currentPage = window.location.pathname.split("/").pop();
+
+    links.forEach(link => {
+        if (link.getAttribute("href") === currentPage) {
+            link.classList.add("active");
+        }
+    });
+
+        function toggleMenu() {
+            let menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+
+    // Accordion single-open mode:
+    const TOTAL = 9;
+    function toggleAccordion(id) {
+      for (let i = 1; i <= TOTAL; i++) {
+        const content = document.getElementById('content-' + i);
+        const arrow = document.getElementById('arrow-' + i);
+        const isTarget = (i === id);
+
+        if (isTarget) {
+          // If currently closed -> open; if open -> close
+          const closed = content.classList.contains('hidden');
+          if (closed) openContent(i);
+          else closeContent(i);
+        } else {
+          // ensure others are closed
+          closeContent(i);
+        }
+      }
+    }
+
+    function openContent(i) {
+      const content = document.getElementById('content-' + i);
+      const arrow = document.getElementById('arrow-' + i);
+      if (!content) return;
+      content.classList.remove('hidden');
+      // compute natural height then set max-height to allow CSS transition
+      content.style.maxHeight = content.scrollHeight + 'px';
+      content.classList.add('open');
+      arrow.name = 'chevron-up-outline';
+      arrow.style.transform = 'rotate(180deg)';
+    }
+
+    function closeContent(i) {
+      const content = document.getElementById('content-' + i);
+      const arrow = document.getElementById('arrow-' + i);
+      if (!content) return;
+      // collapse
+      content.style.maxHeight = content.scrollHeight + 'px'; // set to current height for transition
+      // force reflow, then set to 0
+      window.getComputedStyle(content).height;
+      content.style.maxHeight = '0px';
+      content.classList.remove('open');
+      // after transition, hide to keep DOM tidy
+      setTimeout(() => {
+        if (content && content.style.maxHeight === '0px') content.classList.add('hidden');
+      }, 360);
+      if (arrow) {
+        arrow.name = 'chevron-down-outline';
+        arrow.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    // optional: collapse all on load
+    window.addEventListener('load', () => {
+      for (let i = 1; i <= TOTAL; i++) {
+        const c = document.getElementById('content-' + i);
+        if (c) {
+          c.classList.add('hidden');
+          c.style.maxHeight = '0px';
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
