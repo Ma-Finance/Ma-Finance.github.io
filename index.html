@@ -58,13 +58,16 @@
             line-height: 1.5;
         }
 
+        /*Logo Section*/
         .gradient-logo-text {
             background: linear-gradient(135deg, hsl(184 95% 45%) 0%, hsl(200 95% 55%) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            cursor: pointer;
         }
 
+        /*Navbar Section*/
         .nav-link {
             position: relative;
             transition: 0.3s;
@@ -111,6 +114,71 @@
             color: #00eaff;
         }
 
+        /* feature Section */
+        /* Disable hover-scale on mobile */
+        @media (max-width: 640px) {
+            .hover\:scale-105:hover {
+                transform: none !important;
+            }
+        }
+
+        /* Fade + Slide Animations with Rotation */
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeSlideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-slide-up {
+            opacity: 0;
+            animation: fadeSlideUp 0.9s ease-out forwards;
+        }
+
+        .animate-fade-slide-down {
+            opacity: 0;
+            animation: fadeSlideDown 1s ease-out forwards;
+        }
+
+        /*HOW IT WORKS (3 STEP PROCESS)*/
+        .fade-slide-up {
+            opacity: 0;
+            transform: translateY(25px);
+            animation: fadeSlideUp 0.9s ease-out forwards;
+        }
+
+        @keyframes fadeSlideUp {
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /*Feature Section */
+        /* Glass Card */
+        .glass-card {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -119,6 +187,8 @@
             box-shadow: var(--glass-shadow);
         }
 
+
+        /*Calculator Section */
         .glass-card-strong {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
@@ -198,6 +268,25 @@
             cursor: pointer;
         }
 
+        /* Bounce animation */
+        .bounce {
+            animation: bounceScale 0.4s ease forwards;
+        }
+
+        @keyframes bounceScale {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -230,6 +319,188 @@
             animation: scaleIn 0.4s ease-out;
         }
 
+        /* Existing Animations */
+        .fade-slide-up {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeSlideUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Delayed animation helpers */
+        .animate-delay-1 {
+            animation-delay: 0.3s;
+        }
+
+        .animate-delay-2 {
+            animation-delay: 0.6s;
+        }
+
+        /* Pop-in for phone */
+        .animate-pop-in {
+            opacity: 0;
+            transform: scale(0.85);
+            animation: popIn 0.8s ease-out forwards;
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Soft floating animation */
+        .animate-float-soft {
+            animation: floatSoft 5s ease-in-out infinite;
+        }
+
+        @keyframes floatSoft {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Glow pulse behind phone */
+        .animate-glow-pulse {
+            animation: glowPulse 3.5s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.6;
+                transform: scale(1.15);
+            }
+        }
+
+        /* Fade-in for description */
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeInText 1.2s ease forwards;
+        }
+
+        @keyframes fadeInText {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Feature list stagger animation */
+        .feature-animate {
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: featureSlide 0.8s ease forwards;
+        }
+
+        .feature-animate:nth-child(1) {
+            animation-delay: 0.4s;
+        }
+
+        .feature-animate:nth-child(2) {
+            animation-delay: 0.6s;
+        }
+
+        .feature-animate:nth-child(3) {
+            animation-delay: 0.8s;
+        }
+
+        @keyframes featureSlide {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Soft bouncing button */
+        .animate-bounce-soft {
+            animation: bounceSoft 2.5s infinite ease-in-out;
+        }
+
+        @keyframes bounceSoft {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        /*LOAN TIMELINE SECTION */
+        /* Fade Slide Up */
+        .fade-slide-up {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeSlideUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Pulsing Node Glow */
+        .animate-pulse-glow {
+            animation: pulseGlow 2.2s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0px 0 rgba(56, 189, 248, 0.6);
+                transform: scale(1);
+            }
+
+            50% {
+                box-shadow: 0 0 25px 8px rgba(56, 189, 248, 0.45);
+                transform: scale(1.15);
+            }
+        }
+
+        /* Animated Glow Timeline Line */
+        @keyframes glowLine {
+            0% {
+                opacity: 0.65;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.65;
+            }
+        }
+
+        .animate-glowline {
+            animation: glowLine 3s infinite ease-in-out;
+        }
+
+        /*Toast Notification Section*/
         .toast {
             position: fixed;
             bottom: 2rem;
@@ -418,79 +689,156 @@
         </div>
     </section>
 
-    <!-- Loan Calculator Section -->
-    <section id="calculator" class="py-16 px-4">
+    <!-- HOW IT WORKS (3 STEP PROCESS)  -->
+    <section class="py-20 px-6 relative overflow-hidden">
+
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-white/70 via-cyan-50/40 to-white/20 pointer-events-none">
+        </div>
+
+        <div class="relative max-w-6xl mx-auto z-10">
+
+            <!-- Title -->
+            <div class="text-center mb-16 fade-slide-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-cyan-600">How It Works</h2>
+                <p class="text-gray-600 text-lg mt-2">Your loan in 3 easy steps</p>
+            </div>
+
+            <!-- Timeline Container -->
+            <div class="relative border-l-4 border-cyan-400/50 ml-6 space-y-16">
+
+                <!-- Step 1 -->
+                <div class="relative pl-10 fade-slide-up">
+                    <!-- Icon Circle -->
+                    <div class="absolute -left-6 top-0 w-12 h-12 rounded-full 
+                    bg-gradient-to-br from-cyan-500 to-cyan-300 shadow-xl
+                    flex items-center justify-center animate-scale-in">
+                        <span class="text-white text-xl font-bold">1</span>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition-all duration-300">
+                        <h3 class="text-2xl font-semibold text-cyan-600 mb-2">Fill Application</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Complete your basic details in just <strong>2 minutes</strong> with our fast online form.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative pl-10 fade-slide-up" style="animation-delay: 150ms;">
+                    <div class="absolute -left-6 top-0 w-12 h-12 rounded-full 
+                    bg-gradient-to-br from-cyan-500 to-cyan-300 shadow-xl 
+                    flex items-center justify-center animate-scale-in">
+                        <span class="text-white text-xl font-bold">2</span>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition-all duration-300">
+                        <h3 class="text-2xl font-semibold text-cyan-600 mb-2">Get Verified</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Quick & secure <strong>digital verification</strong> with instant processing.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative pl-10 fade-slide-up" style="animation-delay: 300ms;">
+                    <div class="absolute -left-6 top-0 w-12 h-12 rounded-full 
+                    bg-gradient-to-br from-cyan-500 to-cyan-300 shadow-xl 
+                    flex items-center justify-center animate-scale-in">
+                        <span class="text-white text-xl font-bold">3</span>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition-all duration-300">
+                        <h3 class="text-2xl font-semibold text-cyan-600 mb-2">Receive Money</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Approved? Your amount is sent via <strong>instant bank transfer</strong> in minutes.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!--LOAN CALCULATOR SECTION-->
+    <section id="calculator" class="py-16 px-4 bg-gradient-to-b from-white to-cyan-50">
         <div class="container max-w-6xl mx-auto">
 
             <!-- Title -->
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-cyan-600">Loan Calculator</h2>
-                <p class="text-gray-600 text-lg">Swipe to adjust your loan and see EMI instantly</p>
+                <h2
+                    class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500">
+                    Loan Calculator
+                </h2>
+                <p class="text-gray-500 text-lg">Adjust your loan and see EMI instantly</p>
             </div>
 
-            <div class="border rounded-2xl p-10 grid grid-cols-1 md:grid-cols-2 gap-10 shadow-2xl shadow-cyan-100">
+            <div
+                class="border rounded-3xl p-10 grid grid-cols-1 md:grid-cols-2 gap-10 shadow-xl shadow-cyan-200/30 bg-white">
 
                 <!-- LEFT SIDE -->
                 <div class="space-y-10">
 
                     <!-- Loan Amount -->
-                    <div class="space-y-2">
-                        <p class="text-xs font-semibold text-gray-400">STEP 01</p>
+                    <div class="space-y-3">
+                        <p class="text-xs font-semibold text-gray-400 tracking-wider">STEP 01</p>
                         <p class="text-xl font-bold text-cyan-600">Required loan amount</p>
 
                         <div class="flex justify-between items-center">
-                            <span class="text-gray-600 text-sm">Min ₹ 5,000</span>
+                            <span class="text-gray-500 text-sm">Min ₹ 5,000</span>
 
                             <div class="flex items-center gap-1">
                                 <span class="font-bold">₹</span>
                                 <input id="loanAmountInput"
-                                    class="border px-4 py-2 rounded-lg text-right w-32 font-semibold" type="number"
-                                    value="5000" oninput="syncAmountFromBox()">
+                                    class="border border-gray-300 focus:ring-2 focus:ring-cyan-400 px-4 py-2 rounded-lg text-right w-32 font-semibold transition-all duration-300"
+                                    type="number" value="5000" oninput="syncAmountFromBox()">
                             </div>
                         </div>
 
                         <!-- FIXED AMOUNTS SLIDER -->
                         <input type="range" id="loanAmount" min="0" max="8" step="1" value="0"
-                            class="w-full h-3 rounded-lg appearance-none bg-cyan-200 slider-thumb"
+                            class="w-full h-3 rounded-lg appearance-none bg-cyan-200/50 slider-thumb hover:scale-105 transition-transform duration-300"
                             oninput="updateCalculator()">
 
-                        <div class="flex justify-between text-sm text-gray-500">
+                        <div class="flex justify-between text-sm text-gray-400 font-medium">
                             <span>₹ 5,000</span>
                             <span>₹ 50,000</span>
                         </div>
                     </div>
 
                     <!-- Interest -->
-                    <div class="space-y-2">
-                        <p class="text-xs font-semibold text-gray-400">STEP 02</p>
+                    <div class="space-y-3">
+                        <p class="text-xs font-semibold text-gray-400 tracking-wider">STEP 02</p>
                         <p class="text-xl font-bold text-cyan-600">Interest rate</p>
 
                         <div class="flex justify-between items-center">
-                            <span class="text-gray-600 text-sm">Auto-set</span>
+                            <span class="text-gray-500 text-sm">Auto-set</span>
                             <div class="flex items-center gap-1">
                                 <input id="interestInput"
-                                    class="border px-4 py-2 rounded-lg text-right w-20 font-semibold bg-gray-100"
+                                    class="border border-gray-300 px-4 py-2 rounded-lg text-right w-20 font-semibold bg-gray-100 cursor-not-allowed"
                                     type="number" value="24" disabled>
                                 <span class="font-bold">%</span>
                             </div>
                         </div>
 
                         <input type="range" id="interestRate" min="0" max="8" step="1" value="0"
-                            class="w-full h-3 rounded-lg appearance-none bg-cyan-200 slider-thumb" disabled>
+                            class="w-full h-3 rounded-lg appearance-none bg-cyan-200/50 slider-thumb cursor-not-allowed"
+                            disabled>
                     </div>
 
                     <!-- Tenure -->
-                    <div class="space-y-2">
-                        <p class="text-xs font-semibold text-gray-400">STEP 03</p>
+                    <div class="space-y-3">
+                        <p class="text-xs font-semibold text-gray-400 tracking-wider">STEP 03</p>
                         <p class="text-xl font-bold text-cyan-600">Loan tenure</p>
 
                         <div class="flex justify-between items-center">
-                            <span class="text-gray-600 text-sm">Auto-set</span>
+                            <span class="text-gray-500 text-sm">Auto-set</span>
                             <span class="font-semibold text-cyan-600" id="loanTermDisplayBox">2 months</span>
                         </div>
 
                         <input type="range" id="loanTerm" min="0" max="8" step="1" value="0"
-                            class="w-full h-3 rounded-lg appearance-none bg-cyan-200 slider-thumb" disabled>
+                            class="w-full h-3 rounded-lg appearance-none bg-cyan-200/50 slider-thumb cursor-not-allowed"
+                            disabled>
                     </div>
                 </div>
 
@@ -502,41 +850,43 @@
                         <svg class="w-full h-full transform -rotate-90">
                             <circle cx="96" cy="96" r="70" stroke="#e5e7eb" stroke-width="14" fill="none"></circle>
                             <circle id="progressCircle" cx="96" cy="96" r="70" stroke="#06b6d4" stroke-width="14"
-                                fill="none" stroke-linecap="round" stroke-dasharray="440" stroke-dashoffset="440">
-                            </circle>
+                                fill="none" stroke-linecap="round" stroke-dasharray="440" stroke-dashoffset="440"
+                                class="transition-all duration-700 ease-out"></circle>
                         </svg>
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="text-center">
-                                <div class="text-2xl font-bold text-cyan-600">Loan</div>
+                                <div class="text-2xl font-extrabold text-cyan-600 animate-pulse">Loan</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Summary -->
-                    <div class="space-y-4 text-left w-full px-6">
+                    <div
+                        class="space-y-4 text-left w-full px-6 bg-cyan-50 rounded-xl p-6 shadow-md shadow-cyan-100/40 transition-all duration-500">
                         <div class="flex justify-between">
-                            <span class="font-medium">Loan Amount</span>
-                            <span id="loanAmountSummary" class="font-bold text-cyan-600">₹ 5,000</span>
+                            <span class="font-medium text-gray-600">Loan Amount</span>
+                            <span id="loanAmountSummary"
+                                class="font-bold text-cyan-600 transition-transform duration-300">₹ 5,000</span>
                         </div>
                         <div class="flex justify-between">
-                            <span class="font-medium">Interest Rate</span>
-                            <span id="interestSummary" class="font-bold text-cyan-600">₹ 2,575</span>
+                            <span class="font-medium text-gray-600">Interest Rate</span>
+                            <span id="interestSummary"
+                                class="font-bold text-cyan-600 transition-transform duration-300">₹ 2,575</span>
                         </div>
                     </div>
 
-                    <hr class="my-4 w-full border-gray-200">
+                    <hr class="my-4 w-full border-gray-300">
 
                     <div class="flex justify-between w-full px-6">
-                        <span class="font-bold text-lg">Monthly EMI</span>
-                        <span id="emiSummary" class="font-bold text-lg text-cyan-600">₹ 2,575</span>
+                        <span class="font-bold text-lg text-gray-700">Monthly EMI</span>
+                        <span id="emiSummary"
+                            class="font-bold text-lg text-cyan-600 transition-transform duration-300">₹ 2,575</span>
                     </div>
 
                 </div>
             </div>
         </div>
     </section>
-
-
 
     <!-- Loan Application Section -->
     <section id="apply" class="py-16 px-4 bg-gray-100">
@@ -668,11 +1018,173 @@
         <div id="toastMessage" class="text-sm text-gray-600"></div>
     </div>
 
-    <!-- Footer Section -->
+    <!-- APP DOWNLOAD PROMO SECTION -->
+    <section class="relative py-20 overflow-hidden">
+
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-white via-cyan-50 to-cyan-100 opacity-90"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+            <!-- Heading -->
+            <h2 class="text-4xl md:text-5xl font-extrabold text-black fade-slide-up animate-delay-1 text-center mb-12">
+                Download Our App
+            </h2>
+
+            <!-- Container -->
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+
+                <!-- Phone Mockup -->
+                <div class="flex justify-center">
+                    <div class="relative w-64 md:w-80 animate-float-soft">
+                        <div class="absolute inset-0 rounded-3xl bg-cyan-300 blur-3xl opacity-20 animate-glow-pulse">
+                        </div>
+                        <img src="Madhav Finance.png" alt="App Preview"
+                            class="relative z-10 drop-shadow-2xl rounded-3xl animate-pop-in" />
+                    </div>
+                </div>
+
+                <!-- Features + Button -->
+                <div class="glass-box p-8 rounded-3xl shadow-xl fade-slide-up animate-delay-2">
+
+                    <!-- Description -->
+                    <p class="text-gray-700 text-lg leading-relaxed mb-6 animate-fade-in">
+                        Experience fast, simple and transparent financing directly from your mobile.
+                    </p>
+
+                    <!-- Features -->
+                    <ul class="space-y-4 text-gray-800">
+                        <li class="flex items-center gap-3 feature-animate">
+                            <span class="text-cyan-600 text-2xl">✔</span>
+                            <span class="text-lg font-medium">Fast Approval</span>
+                        </li>
+                        <li class="flex items-center gap-3 feature-animate">
+                            <span class="text-cyan-600 text-2xl">✔</span>
+                            <span class="text-lg font-medium">Track Application Status</span>
+                        </li>
+                        <li class="flex items-center gap-3 feature-animate">
+                            <span class="text-cyan-600 text-2xl">✔</span>
+                            <span class="text-lg font-medium">Manage EMIs Easily</span>
+                        </li>
+                    </ul>
+
+                    <!-- App Button -->
+                    <div class="mt-8">
+                        <a href="#"
+                            class="inline-flex items-center gap-3 bg-black text-white px-6 py-3 rounded-xl shadow-lg hover:scale-105 transition-all duration-300 animate-bounce-soft">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                                alt="Google Play" class="h-10" />
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOAN TIMELINE SECTION -->
+    <section class="relative py-24 overflow-hidden">
+
+        <!-- Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-white via-cyan-50/60 to-cyan-100 opacity-95"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+            <!-- Heading -->
+            <div class="text-center mb-16 fade-slide-up">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-black">Loan Journey Timeline</h2>
+                <p class="text-gray-600 mt-3 text-lg">Your loan moves through a transparent, fast and secure digital
+                    process</p>
+            </div>
+
+            <!-- Timeline Wrapper -->
+            <div class="relative w-full">
+
+                <!-- Animated Gradient Line (Desktop Only) -->
+                <div
+                    class="hidden md:block absolute top-1/2 transform -translate-y-1/2 w-full h-1 bg-gradient-to-r from-cyan-300 via-cyan-500 to-cyan-300 animate-glowline rounded-full">
+                </div>
+
+                <!-- Steps -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-16 md:gap-0 mt-10">
+
+                    <!-- STEP 1 -->
+                    <div class="flex flex-col items-center text-center fade-slide-up">
+                        <div class="relative flex justify-center items-center">
+                            <div
+                                class="w-16 h-16 rounded-full bg-white shadow-xl flex items-center justify-center border border-cyan-400">
+                                <ion-icon name="document-text-outline" class="text-4xl text-cyan-600"></ion-icon>
+                            </div>
+
+                            <!-- Glowing Node -->
+                            <div
+                                class="absolute bottom-0 translate-y-8 w-6 h-6 bg-cyan-500 rounded-full animate-pulse-glow">
+                            </div>
+                        </div>
+
+                        <h3 class="mt-8 text-xl font-bold text-gray-800">Apply</h3>
+                        <p class="text-gray-600 mt-2">Fill a simple online form in under 2 minutes.</p>
+                    </div>
+
+                    <!-- STEP 2 -->
+                    <div class="flex flex-col items-center text-center fade-slide-up" style="animation-delay: 150ms;">
+                        <div class="relative flex justify-center items-center">
+                            <div
+                                class="w-16 h-16 rounded-full bg-white shadow-xl flex items-center justify-center border border-cyan-400">
+                                <ion-icon name="shield-checkmark-outline" class="text-4xl text-cyan-600"></ion-icon>
+                            </div>
+                            <div
+                                class="absolute bottom-0 translate-y-8 w-6 h-6 bg-cyan-500 rounded-full animate-pulse-glow">
+                            </div>
+                        </div>
+
+                        <h3 class="mt-8 text-xl font-bold text-gray-800">Verification</h3>
+                        <p class="text-gray-600 mt-2">Quick digital KYC & document verification.</p>
+                    </div>
+
+                    <!-- STEP 3 -->
+                    <div class="flex flex-col items-center text-center fade-slide-up" style="animation-delay: 300ms;">
+                        <div class="relative flex justify-center items-center">
+                            <div
+                                class="w-16 h-16 rounded-full bg-white shadow-xl flex items-center justify-center border border-cyan-400">
+                                <ion-icon name="checkmark-done-circle-outline"
+                                    class="text-4xl text-cyan-600"></ion-icon>
+                            </div>
+                            <div
+                                class="absolute bottom-0 translate-y-8 w-6 h-6 bg-cyan-500 rounded-full animate-pulse-glow">
+                            </div>
+                        </div>
+
+                        <h3 class="mt-8 text-xl font-bold text-gray-800">Approval</h3>
+                        <p class="text-gray-600 mt-2">Your loan is assessed & approved instantly.</p>
+                    </div>
+
+                    <!-- STEP 4 -->
+                    <div class="flex flex-col items-center text-center fade-slide-up" style="animation-delay: 450ms;">
+                        <div class="relative flex justify-center items-center">
+                            <div
+                                class="w-16 h-16 rounded-full bg-white shadow-xl flex items-center justify-center border border-cyan-400">
+                                <ion-icon name="card-outline" class="text-4xl text-cyan-600"></ion-icon>
+                            </div>
+                            <div
+                                class="absolute bottom-0 translate-y-8 w-6 h-6 bg-cyan-500 rounded-full animate-pulse-glow">
+                            </div>
+                        </div>
+
+                        <h3 class="mt-8 text-xl font-bold text-gray-800">Disbursement</h3>
+                        <p class="text-gray-600 mt-2">Funds are transferred directly to your bank.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
     <footer class="bg-cyan-600 text-white pt-12 pb-6 mt-16">
 
         <div class="max-w-7xl mx-auto px-6">
-            <!-- ================= NAVBAR INSIDE FOOTER ================= -->
+            <!-- NAVBAR INSIDE FOOTER SECTION-->
             <div class="flex justify-center mb-8">
                 <ul class="nav-desktop flex items-center gap-8 text-base font-medium">
                     <li><a href="index.html" class="hover:underline hover:opacity-80 transition">Home</a></li>
@@ -842,6 +1354,6 @@
         updateCalculator();
     </script>
 
-
 </body>
+
 </html>

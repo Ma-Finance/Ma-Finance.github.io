@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -13,6 +14,38 @@
       min-height: 100vh;
       font-family: 'Inter', ui-sans-serif, system-ui;
       padding: 60px 20px;
+    }
+
+    .gradient-logo-text {
+      background: linear-gradient(135deg, hsl(184 95% 45%) 0%, hsl(200 95% 55%) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /*Navbar Section*/
+    .nav-link {
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #47e5f4;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #47e5f4;
+      left: 0;
+      bottom: -4px;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
     }
 
     .card {
@@ -33,16 +66,26 @@
     .card {
       animation: float 6s ease-in-out infinite;
     }
+
     @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-12px); }
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
     }
 
     /* Gradient top border (appears on hover) */
     .card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 5px;
       background: linear-gradient(90deg, #06b6d4, #8b5cf6);
       opacity: 0;
@@ -51,13 +94,15 @@
 
     /* Strong lift + beautiful glow on hover */
     .card:hover {
-      animation: none; /* Stop floating while hovering */
+      animation: none;
+      /* Stop floating while hovering */
       transform: translateY(-28px) scale(1.05);
       box-shadow: 0 35px 90px rgba(6, 182, 212, 0.35),
-                  0 0 40px rgba(139, 92, 246, 0.25);
+        0 0 40px rgba(139, 92, 246, 0.25);
       border-color: rgba(139, 92, 246, 0.4);
       z-index: 10;
     }
+
     .card:hover::before {
       opacity: 1;
     }
@@ -65,7 +110,7 @@
     .title {
       font-size: 28px;
       font-weight: 900;
-      background: linear-gradient(90deg, #164e63, #06b6d4);
+      background: linear-gradient(90deg, #29a6aa, #96d9db);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -93,123 +138,189 @@
     }
   </style>
 </head>
-<body class="antialiased">
 
-  <h1 class="text-5xl md:text-7xl font-black text-center mb-20 bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
+<body class="antialiased">
+  <!-- Glassy Transparent Navbar -->
+  <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-white/10 border-b border-white/20">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+
+      <!-- Left Logo + Name -->
+      <div class="flex items-center gap-3">
+        <img src="Madhav Finance logo.png" class="w-14 h-14 rounded-full" alt="logo">
+        <div class="gradient-logo-text">
+          <span class="text-3xl font-bold tracking-wide">Madhav Finance</span>
+        </div>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <ul class="nav-desktop flex items-center gap-5 text-lg hidden md:flex">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="#" class="nav-link">Breakdown</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+      </ul>
+
+      <!-- MOBILE MENU ICON -->
+      <button class="nav-toggle md:hidden text-3xl font-bold text-cyan-600" onclick="toggleMobileMenu()">
+        ☰
+      </button>
+
+    </div>
+
+    <!-- MOBILE MENU (Initially hidden) -->
+    <div id="mobileMenu"
+      class="hidden md:hidden flex-col bg-white/30 backdrop-blur-xl px-6 pb-4 border-t border-white/20">
+      <a href="#" class="py-2 text-lg block">Home</a>
+      <a href="breakdown.html" class="py-2 text-lg block">Breakdown</a>
+      <a href="contact.html" class="py-2 text-lg block">Contact</a>
+      <a href="about.html" class="py-2 text-lg block">About Us</a>
+    </div>
+  </nav>
+
+  <h1
+    class="text-5xl md:text-7xl font-black text-center mb-20 bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
     Breakdown
   </h1>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto px-6">
 
-    <div class="card"><div class="title">upto ₹5,000</div><ul>
-      <li><span class="dot"></span>Loan Amount - ₹5,000</li>
-      <li><span class="dot"></span>Tenure - 2 M</li>
-      <li><span class="dot"></span>Rate p.a - 24%</li>
-      <li><span class="dot"></span>EMI - ₹2,575</li>
-      <li><span class="dot"></span>Total Interest - ₹151</li>
-      <li><span class="dot"></span>Processing Fee - ₹300</li>
-      <li><span class="dot"></span>Credited to Customer - ₹4,700</li>
-      <li><span class="dot"></span>Total Repayment - ₹5,151</li>
-      <li><span class="dot"></span>Total Collection (I+F) - ₹451</li>
-    </ul></div>
+    <div class="card">
+      <div class="title">upto ₹5,000</div>
+      <ul>
+        <li><span class="dot"></span>Loan Amount - ₹5,000</li>
+        <li><span class="dot"></span>Tenure - 2 M</li>
+        <li><span class="dot"></span>Rate p.a - 24%</li>
+        <li><span class="dot"></span>EMI - ₹2,575</li>
+        <li><span class="dot"></span>Total Interest - ₹151</li>
+        <li><span class="dot"></span>Processing Fee - ₹300</li>
+        <li><span class="dot"></span>Credited to Customer - ₹4,700</li>
+        <li><span class="dot"></span>Total Repayment - ₹5,151</li>
+        <li><span class="dot"></span>Total Collection (I+F) - ₹451</li>
+      </ul>
+    </div>
 
-    <div class="card"><div class="title">upto ₹10,000</div><ul>
-      <li><span class="dot"></span>Loan Amount - ₹10,000</li>
-      <li><span class="dot"></span>Tenure - 2 M</li>
-      <li><span class="dot"></span>Rate p.a - 24%</li>
-      <li><span class="dot"></span>EMI - ₹5,150</li>
-      <li><span class="dot"></span>Total Interest - ₹276</li>
-      <li><span class="dot"></span>Processing Fee - ₹500</li>
-      <li><span class="dot"></span>Credited to Customer - ₹9,500</li>
-      <li><span class="dot"></span>Total Repayment - ₹10,276</li>
-      <li><span class="dot"></span>Total Collection (I+F) - ₹776</li>
-    </ul></div>
+    <div class="card">
+      <div class="title">upto ₹10,000</div>
+      <ul>
+        <li><span class="dot"></span>Loan Amount - ₹10,000</li>
+        <li><span class="dot"></span>Tenure - 2 M</li>
+        <li><span class="dot"></span>Rate p.a - 24%</li>
+        <li><span class="dot"></span>EMI - ₹5,150</li>
+        <li><span class="dot"></span>Total Interest - ₹276</li>
+        <li><span class="dot"></span>Processing Fee - ₹500</li>
+        <li><span class="dot"></span>Credited to Customer - ₹9,500</li>
+        <li><span class="dot"></span>Total Repayment - ₹10,276</li>
+        <li><span class="dot"></span>Total Collection (I+F) - ₹776</li>
+      </ul>
+    </div>
 
-    <div class="card"><div class="title">upto ₹15,000</div><ul>
-      <li><span class="dot"></span>Loan Amount - ₹15,000</li>
-      <li><span class="dot"></span>Tenure - 4 M</li>
-      <li><span class="dot"></span>Rate p.a - 21%</li>
-      <li><span class="dot"></span>EMI - ₹3,835</li>
-      <li><span class="dot"></span>Total Interest - ₹339</li>
-      <li><span class="dot"></span>Processing Fee - ₹700</li>
-      <li><span class="dot"></span>Credited to Customer - ₹14,300</li>
-      <li><span class="dot"></span>Total Repayment - ₹15,339</li>
-      <li><span class="dot"></span>Total Collection (I+F) - ₹1,039</li>
-    </ul></div>
+    <div class="card">
+      <div class="title">upto ₹15,000</div>
+      <ul>
+        <li><span class="dot"></span>Loan Amount - ₹15,000</li>
+        <li><span class="dot"></span>Tenure - 4 M</li>
+        <li><span class="dot"></span>Rate p.a - 21%</li>
+        <li><span class="dot"></span>EMI - ₹3,835</li>
+        <li><span class="dot"></span>Total Interest - ₹339</li>
+        <li><span class="dot"></span>Processing Fee - ₹700</li>
+        <li><span class="dot"></span>Credited to Customer - ₹14,300</li>
+        <li><span class="dot"></span>Total Repayment - ₹15,339</li>
+        <li><span class="dot"></span>Total Collection (I+F) - ₹1,039</li>
+      </ul>
+    </div>
 
-    <div class="card"><div class="title">upto ₹20,000</div><ul>
-      <li><span class="dot"></span>Loan Amount - ₹20,000</li>
-      <li><span class="dot"></span>Tenure - 4 M</li>
-      <li><span class="dot"></span>Rate p.a - 20%</li>
-      <li><span class="dot"></span>EMI - ₹5,135</li>
-      <li><span class="dot"></span>Total Interest - ₹538</li>
-      <li><span class="dot"></span>Processing Fee - ₹1,000</li>
-      <li><span class="dot"></span>Credited to Customer - ₹19,000</li>
-      <li><span class="dot"></span>Total Repayment - ₹20,538</li>
-      <li><span class="dot"></span>Total Collection (I+F) - ₹1,538</li>
-    </ul></div>
+    <div class="card">
+      <div class="title">upto ₹20,000</div>
+      <ul>
+        <li><span class="dot"></span>Loan Amount - ₹20,000</li>
+        <li><span class="dot"></span>Tenure - 4 M</li>
+        <li><span class="dot"></span>Rate p.a - 20%</li>
+        <li><span class="dot"></span>EMI - ₹5,135</li>
+        <li><span class="dot"></span>Total Interest - ₹538</li>
+        <li><span class="dot"></span>Processing Fee - ₹1,000</li>
+        <li><span class="dot"></span>Credited to Customer - ₹19,000</li>
+        <li><span class="dot"></span>Total Repayment - ₹20,538</li>
+        <li><span class="dot"></span>Total Collection (I+F) - ₹1,538</li>
+      </ul>
+    </div>
 
-    <div class="card"><div class="title">upto ₹25,000</div><ul>
-      <li><span class="dot"></span>Loan Amount - ₹25,000</li>
-      <li><span class="dot"></span>Tenure - 5 M</li>
-      <li><span class="dot"></span>Rate p.a - 19%</li>
-      <li><span class="dot"></span>EMI - ₹5,237</li>
-      <li><span class="dot"></span>Total Interest - ₹1,185</li>
-      <li><span class="dot"></span>Processing Fee - ₹1,200</li>
-      <li><span class="dot"></span>Credited to Customer - ₹23,800</li>
-      <li><span class="dot"></span>Total Repayment - ₹26,185</li>
-      <li><span class="dot"></span>Total Collection (I+F) - ₹2,385</li>
-    </ul></div>
+    <div class="card">
+      <div class="title">upto ₹25,000</div>
+      <ul>
+        <li><span class="dot"></span>Loan Amount - ₹25,000</li>
+        <li><span class="dot"></span>Tenure - 5 M</li>
+        <li><span class="dot"></span>Rate p.a - 19%</li>
+        <li><span class="dot"></span>EMI - ₹5,237</li>
+        <li><span class="dot"></span>Total Interest - ₹1,185</li>
+        <li><span class="dot"></span>Processing Fee - ₹1,200</li>
+        <li><span class="dot"></span>Credited to Customer - ₹23,800</li>
+        <li><span class="dot"></span>Total Repayment - ₹26,185</li>
+        <li><span class="dot"></span>Total Collection (I+F) - ₹2,385</li>
+      </ul>
+    </div>
 
-    <div class="card"><div class="title">upto ₹30,000</div><ul>
-      <li><span class="dot"></span>Loan Amount - ₹30,000</li>
-      <li><span class="dot"></span>Tenure - 6 M</li>
-      <li><span class="dot"></span>Rate p.a - 18%</li>
-      <li><span class="dot"></span>EMI - ₹5,159</li>
-      <li><span class="dot"></span>Total Interest - ₹957</li>
-      <li><span class="dot"></span>Processing Fee - ₹1,500</li>
-      <li><span class="dot"></span>Credited to Customer - ₹28,500</li>
-      <li><span class="dot"></span>Total Repayment - ₹30,957</li>
-      <li><span class="dot"></span>Total Collection (I+F) - ₹2,457</li>
-    </ul></div>
+    <div class="card">
+      <div class="title">upto ₹30,000</div>
+      <ul>
+        <li><span class="dot"></span>Loan Amount - ₹30,000</li>
+        <li><span class="dot"></span>Tenure - 6 M</li>
+        <li><span class="dot"></span>Rate p.a - 18%</li>
+        <li><span class="dot"></span>EMI - ₹5,159</li>
+        <li><span class="dot"></span>Total Interest - ₹957</li>
+        <li><span class="dot"></span>Processing Fee - ₹1,500</li>
+        <li><span class="dot"></span>Credited to Customer - ₹28,500</li>
+        <li><span class="dot"></span>Total Repayment - ₹30,957</li>
+        <li><span class="dot"></span>Total Collection (I+F) - ₹2,457</li>
+      </ul>
+    </div>
 
-    <div class="card"><div class="title">upto ₹35,000</div><ul>
-      <li><span class="dot"></span>Loan Amount - ₹35,000</li>
-      <li><span class="dot"></span>Tenure - 12 M</li>
-      <li><span class="dot"></span>Rate p.a - 18%</li>
-      <li><span class="dot"></span>EMI - ₹3,311</li>
-      <li><span class="dot"></span>Total Interest - ₹4,732</li>
-      <li><span class="dot"></span>Processing Fee - ₹1,750</li>
-      <li><span class="dot"></span>Credited to Customer - ₹33,250</li>
-      <li><span class="dot"></span>Total Repayment - ₹39,732</li>
-      <li><span class="dot"></span>Total Collection (I+F) - ₹6,482</li>
-    </ul></div>
+    <div class="card">
+      <div class="title">upto ₹35,000</div>
+      <ul>
+        <li><span class="dot"></span>Loan Amount - ₹35,000</li>
+        <li><span class="dot"></span>Tenure - 12 M</li>
+        <li><span class="dot"></span>Rate p.a - 18%</li>
+        <li><span class="dot"></span>EMI - ₹3,311</li>
+        <li><span class="dot"></span>Total Interest - ₹4,732</li>
+        <li><span class="dot"></span>Processing Fee - ₹1,750</li>
+        <li><span class="dot"></span>Credited to Customer - ₹33,250</li>
+        <li><span class="dot"></span>Total Repayment - ₹39,732</li>
+        <li><span class="dot"></span>Total Collection (I+F) - ₹6,482</li>
+      </ul>
+    </div>
 
-    <div class="card"><div class="title">upto ₹40,000</div><ul>
-      <li><span class="dot"></span>Loan Amount - ₹40,000</li>
-      <li><span class="dot"></span>Tenure - 12 M</li>
-      <li><span class="dot"></span>Rate p.a - 18%</li>
-      <li><span class="dot"></span>EMI - ₹3,667</li>
-      <li><span class="dot"></span>Total Interest - ₹4,006</li>
-      <li><span class="dot"></span>Processing Fee - ₹2,000</li>
-      <li><span class="dot"></span>Credited to Customer - ₹38,000</li>
-      <li><span class="dot"></span>Total Repayment - ₹44,006</li>
-      <li><span class="dot"></span>Total Collection (I+F) - ₹6,006</li>
-    </ul></div>
+    <div class="card">
+      <div class="title">upto ₹40,000</div>
+      <ul>
+        <li><span class="dot"></span>Loan Amount - ₹40,000</li>
+        <li><span class="dot"></span>Tenure - 12 M</li>
+        <li><span class="dot"></span>Rate p.a - 18%</li>
+        <li><span class="dot"></span>EMI - ₹3,667</li>
+        <li><span class="dot"></span>Total Interest - ₹4,006</li>
+        <li><span class="dot"></span>Processing Fee - ₹2,000</li>
+        <li><span class="dot"></span>Credited to Customer - ₹38,000</li>
+        <li><span class="dot"></span>Total Repayment - ₹44,006</li>
+        <li><span class="dot"></span>Total Collection (I+F) - ₹6,006</li>
+      </ul>
+    </div>
 
-    <div class="card"><div class="title">upto ₹50,000</div><ul>
-      <li><span class="dot"></span>Loan Amount - ₹50,000</li>
-      <li><span class="dot"></span>Tenure - 12 M</li>
-      <li><span class="dot"></span>Rate p.a - 18%</li>
-      <li><span class="dot"></span>EMI - ₹4,584</li>
-      <li><span class="dot"></span>Total Interest - ₹5,008</li>
-      <li><span class="dot"></span>Processing Fee - ₹5,000</li>
-      <li><span class="dot"></span>Credited to Customer - ₹45,000</li>
-      <li><span class="dot"></span>Total Repayment - ₹55,008</li>
-      <li><span class="dot"></span>Total Collection (I+F) - ₹10,008</li>
-    </ul></div>
+    <div class="card">
+      <div class="title">upto ₹50,000</div>
+      <ul>
+        <li><span class="dot"></span>Loan Amount - ₹50,000</li>
+        <li><span class="dot"></span>Tenure - 12 M</li>
+        <li><span class="dot"></span>Rate p.a - 18%</li>
+        <li><span class="dot"></span>EMI - ₹4,584</li>
+        <li><span class="dot"></span>Total Interest - ₹5,008</li>
+        <li><span class="dot"></span>Processing Fee - ₹5,000</li>
+        <li><span class="dot"></span>Credited to Customer - ₹45,000</li>
+        <li><span class="dot"></span>Total Repayment - ₹55,008</li>
+        <li><span class="dot"></span>Total Collection (I+F) - ₹10,008</li>
+      </ul>
+    </div>
 
   </div>
+
 
   <!-- Entrance animation -->
   <script>
@@ -222,5 +333,6 @@
       delay: 0.2
     });
   </script>
+
 </body>
 </html>
