@@ -1,185 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact | Madhav Finance</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-<style>
-:root {
-    --header-bg: rgba(255, 255, 255, 0.05);
-    --header-border: rgba(255, 255, 255, 0.15);
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Madhav Finance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --header-bg: rgba(255, 255, 255, 0.05);
+            --header-border: rgba(255, 255, 255, 0.15);
+        }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #ffffff, #e0f7fa, #ffffff);
-    min-height: 100vh;
-    color: #1f2937;
-    overflow-x: hidden;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ffffff, #e0f7fa, #ffffff);
+            min-height: 100vh;
+            color: #1f2937;
+            overflow-x: hidden;
+        }
 
-/* Glass Header */
-.glass-header {
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(0, 200, 255, 0.3);
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(0, 200, 255, 0.1);
-}
-.glass-header:hover {
-    background-color: rgba(255, 255, 255, 0.8);
-}
+        /*Logo Section*/
+        .gradient-logo-text {
+            background: linear-gradient(135deg, hsl(184 95% 45%) 0%, hsl(200 95% 55%) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+        }
 
-/* Glass Card */
-.glass-card {
-    background: linear-gradient(135deg, rgba(0,255,255,0.05), rgba(0,200,255,0.05));
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(0,200,255,0.3);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    animation: floatUp 2s ease-in-out infinite alternate;
-}
-.glass-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0,200,255,0.25);
-}
+        /*Navbar Section*/
+        .nav-link {
+            position: relative;
+            transition: 0.3s;
+        }
 
-/* Floating Animation */
-@keyframes floatUp {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(-10px); }
-}
+        .nav-link:hover {
+            color: #47e5f4;
+        }
 
-/* Fade + Slide-up for text */
-.fade-slide {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeSlideIn 0.8s forwards;
-}
-.fade-slide:nth-child(1) { animation-delay: 0.2s; }
-.fade-slide:nth-child(2) { animation-delay: 0.4s; }
-.fade-slide:nth-child(3) { animation-delay: 0.6s; }
-.fade-slide:nth-child(4) { animation-delay: 0.8s; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: #47e5f4;
+            left: 0;
+            bottom: -4px;
+            transition: width 0.3s ease;
+        }
 
-@keyframes fadeSlideIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        .nav-link:hover::after {
+            width: 100%;
+        }
 
-/* Heading Gradient Text */
-h1, h2, h3, h4 {
-    background: linear-gradient(to right, #06b6d4, #22d3ee);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-}
+        /* ACTIVE — stays cyan */
+        .active {
+            color: #47e5f4 !important;
+        }
 
-/* Nav hover underline */
-nav a { position: relative; }
-nav a::after {
-    content: '';
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    bottom: -2px;
-    left: 0;
-    background-color: #06b6d4;
-    transition: width 0.3s;
-}
-nav a:hover::after { width: 100%; }
+        .active::after {
+            width: 100%;
+            background-color: #47e5f4;
+        }
 
-header a { transition: transform 0.3s; }
-header a:hover { transform: scale(1.05); }
-</style>
+        .mobile-item {
+            padding: 12px 20px;
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: 0.3s;
+        }
+
+        .mobile-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #00eaff;
+        }
+
+        /*Header Section*/
+        .gradient-text {
+            background: linear-gradient(135deg, hsl(184 95% 45%) 0%, hsl(200 95% 55%) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Glass Header */
+        .glass-header {
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 200, 255, 0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 200, 255, 0.1);
+        }
+
+        .glass-header:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(0, 200, 255, 0.05));
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            animation: floatUp 2s ease-in-out infinite alternate;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 200, 255, 0.25);
+        }
+
+        /* Floating Animation */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0px);
+            }
+
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Fade + Slide-up for text */
+        .fade-slide {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeSlideIn 0.8s forwards;
+        }
+
+        .fade-slide:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .fade-slide:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .fade-slide:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .fade-slide:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        @keyframes fadeSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Heading Gradient Text */
+        h1,
+        h2,
+        h3,
+        h4 {
+            background: linear-gradient(to right, #06b6d4, #22d3ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        /* Nav hover underline */
+        nav a {
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #06b6d4;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        header a {
+            transition: transform 0.3s;
+        }
+
+        header a:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
+
 <body>
+    <!-- Glassy Transparent Navbar -->
+    <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-white/10 border-b border-white/20">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
 
-<header class="sticky top-0 z-50 glass-header shadow-2xl">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-        <a href="index.html" class="flex items-center gap-3 fade-slide">
-            <img src="Madhav Finance logo.png" class="w-14 h-14 rounded-full" alt="logo">
-            <span class="text-3xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Madhav Finance</span>
-        </a>
-        <nav class="hidden md:flex space-x-8">
-            <a href="index.html" class="text-gray-600 hover:text-cyan-500 transition duration-300 font-medium fade-slide">Home</a>
-            <a href="privacy.html" class="text-gray-600 hover:text-cyan-500 transition duration-300 font-medium fade-slide">Privacy Policy</a>
-            <a href="account-deletion.html" class="text-gray-600 hover:text-cyan-500 transition duration-300 font-medium fade-slide">Account Deletion</a>
-            <a href="#" class="text-cyan-600 font-medium border-b border-cyan-600 fade-slide">Contact</a>
-        </nav>
-        <button class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-cyan-50 transition duration-300">
-            <i data-lucide="menu"></i>
-        </button>
-    </div>
-</header>
-
-<main>
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 text-center">
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 fade-slide">Contact Us</h1>
-        <p class="text-lg text-gray-500 fade-slide">We're here to help! Reach out to us via email or phone.</p>
-    </section>
-
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-
-        <!-- Email Card -->
-        <div class="glass-card p-8 rounded-xl fade-slide">
-            <div class="flex items-center gap-3 mb-4">
-                <i data-lucide="mail" class="text-cyan-400 w-6 h-6"></i>
-                <h2 class="text-2xl font-bold text-gray-800">Email Us</h2>
+            <!-- Left Logo + Name -->
+            <div class="flex items-center gap-3">
+                <img src="Madhav Finance logo.png" class="w-14 h-14 rounded-full" alt="logo">
+                <div class="gradient-logo-text">
+                    <span class="text-3xl font-bold tracking-wide">Madhav Finance</span>
+                </div>
             </div>
-            <p class="text-gray-700 mb-4 fade-slide">
-                Send your queries, feedback, or requests to our support team.
-            </p>
-            <a href="mailto:support@madhavfinance.com" class="inline-flex items-center gap-2 px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-lg transition duration-300 shadow-lg shadow-cyan-500/30 fade-slide">
-                <i data-lucide="mail" class="w-5 h-5"></i>
-                info@madhavfinance.com
-            </a>
+
+            <!-- Desktop Navigation -->
+            <ul class="nav-desktop flex items-center gap-5 text-lg hidden md:flex">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="breakdown.html" class="nav-link">Breakdown</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+
+            <!-- MOBILE MENU ICON -->
+            <button class="nav-toggle md:hidden text-3xl font-bold text-cyan-600" onclick="toggleMobileMenu()">
+                ☰
+            </button>
+
         </div>
 
-        <!-- Phone Card -->
-        <div class="glass-card p-8 rounded-xl fade-slide">
-            <div class="flex items-center gap-3 mb-4">
-                <i data-lucide="phone" class="text-cyan-400 w-6 h-6"></i>
-                <h2 class="text-2xl font-bold text-gray-800">Call Us</h2>
-            </div>
-            <p class="text-gray-700 mb-4 fade-slide">
-                We are available Monday to Friday, 9 AM to 6 PM IST.
-            </p>
-            <a href="tel:+911234567890" class="inline-flex items-center gap-2 px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-lg transition duration-300 shadow-lg shadow-cyan-500/30 fade-slide">
-                <i data-lucide="phone" class="w-5 h-5"></i>
-                +918298133696
-            </a>
+        <!-- MOBILE MENU (Initially hidden) -->
+        <div id="mobileMenu"
+            class="hidden md:hidden flex-col bg-white/30 backdrop-blur-xl px-6 pb-4 border-t border-white/20">
+            <a href="index.html" class="py-2 text-lg block">Home</a>
+            <a href="breakdown.html" class="py-2 text-lg block">Breakdown</a>
+            <a href="contact.html" class="py-2 text-lg block">Contact</a>
+            <a href="about.html" class="py-2 text-lg block">About</a>
         </div>
+    </nav>
 
-        <!-- Address Card (Optional) -->
-        <div class="glass-card p-8 rounded-xl fade-slide">
-            <div class="flex items-center gap-3 mb-4">
-                <i data-lucide="map-pin" class="text-cyan-400 w-6 h-6"></i>
-                <h2 class="text-2xl font-bold text-gray-800">Office Address</h2>
+    <!--Details-->
+    <main>
+        <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 text-center">
+           <div class="text-4xl md:text-5xl font-extrabold mb-4 mt-10 fade-slide">
+            <h1 class="gradient-text">Contact Us</h1>
+           </div> 
+            <p class="text-lg text-gray-500 fade-slide">We're here to help! Reach out to us via email or phone.</p>
+        </section>
+
+        <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+            <!-- Email Card -->
+            <div class="glass-card p-8 rounded-xl fade-slide">
+                <div class="flex items-center gap-3 mb-4">
+                    <i data-lucide="mail" class="text-cyan-400 w-6 h-6"></i>
+                    <h2 class="text-2xl font-bold text-gray-800">Email Us</h2>
+                </div>
+                <p class="text-gray-700 mb-4 fade-slide">
+                    Send your queries, feedback, or requests to our support team.
+                </p>
+                <a href="mailto:support@madhavfinance.com"
+                    class="inline-flex items-center gap-2 px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-lg transition duration-300 shadow-lg shadow-cyan-500/30 fade-slide">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    info@madhavfinance.com
+                </a>
             </div>
-            <p class="text-gray-700 fade-slide">
-                Delhi, India
+
+            <!-- Phone Card -->
+            <div class="glass-card p-8 rounded-xl fade-slide">
+                <div class="flex items-center gap-3 mb-4">
+                    <i data-lucide="phone" class="text-cyan-400 w-6 h-6"></i>
+                    <h2 class="text-2xl font-bold text-gray-800">Call Us</h2>
+                </div>
+                <p class="text-gray-700 mb-4 fade-slide">
+                    We are available Monday to Friday, 9 AM to 6 PM IST.
+                </p>
+                <a href="tel:+911234567890"
+                    class="inline-flex items-center gap-2 px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-lg transition duration-300 shadow-lg shadow-cyan-500/30 fade-slide">
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                    +918298133696
+                </a>
+            </div>
+
+            <!-- Address Card (Optional) -->
+            <div class="glass-card p-8 rounded-xl fade-slide">
+                <div class="flex items-center gap-3 mb-4">
+                    <i data-lucide="map-pin" class="text-cyan-400 w-6 h-6"></i>
+                    <h2 class="text-2xl font-bold text-gray-800">Office Address</h2>
+                </div>
+                <p class="text-gray-700 fade-slide">
+                    Delhi, India
+                </p>
+            </div>
+
+        </section>
+
+        <section
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center border-t border-cyan-200/30 mt-12 fade-slide">
+            <p class="text-gray-500 text-sm">
+                &copy; 2025 Madhav Finance. All rights reserved. <br>
+                <span class="text-xs text-gray-400 mt-2 block">This document is for informational purposes only.</span>
             </p>
+        </section>
+    </main>
+
+        <!-- FOOTER SECTION -->
+    <footer class="bg-cyan-600 text-white pt-12 pb-6">
+
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- NAVBAR INSIDE FOOTER SECTION-->
+            <div class="flex justify-center mb-8">
+                <ul class="nav-desktop flex items-center gap-8 text-base font-medium">
+                    <li><a href="index.html" class="hover:underline hover:opacity-80 transition">Home</a></li>
+                    <li><a href="breakdown.html" class="hover:underline hover:opacity-80 transition">Breakdown</a></li>
+                    <li><a href="contact.html" class="hover:underline hover:opacity-80 transition">Contact</a></li>
+                    <li><a href="about.html" class="hover:underline hover:opacity-80 transition">About</a></li>
+                </ul>
+            </div>
+
+            <!-- Top Row -->
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-white/30 pb-6">
+
+                <!-- Download App -->
+                <div class="flex flex-col items-center md:items-start">
+                    <p class="text-lg font-semibold mb-2">Download App</p>
+
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/512px-Google_Play_Store_badge_EN.svg.png"
+                        alt="Google Play" class="w-40 cursor-pointer">
+                </div>
+
+                <!-- Query Section -->
+                <div class="text-center md:text-right mt-6 md:mt-0">
+                    <p class="text-lg font-semibold">Have Questions? Get In Touch With Us</p>
+                    <p class="text-xl font-bold mt-1">+918298133696</p>
+                    <p class="text-sm mt-1">info@madhavfinance.com</p>
+                </div>
+            </div>
+
+            <!-- Social Icons -->
+            <div class="flex justify-center space-x-8 mt-8 text-3xl">
+                <a href="#" class="text-white hover:opacity-70"><ion-icon name="logo-facebook"></ion-icon></a>
+                <a href="#" class="text-white hover:opacity-70"><ion-icon name="logo-twitter"></ion-icon></a>
+                <a href="#" class="text-white hover:opacity-70"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="#" class="text-white hover:opacity-70"><ion-icon name="logo-linkedin"></ion-icon></a>
+                <a href="#" class="text-white hover:opacity-70"><ion-icon name="logo-youtube"></ion-icon></a>
+            </div>
+
+            <!-- Company Info -->
+            <div class="text-center mt-8">
+                <p class="font-bold text-lg">Madhav Finance</p>
+                <p class="text-sm mt-1">Powered by National Innovation Corporation Pvt Ltd</p>
+            </div>
+
+            <!-- Address -->
+            <div class="text-center mt-4 text-sm">
+                Delhi,India
+            </div>
+
+            <!-- Privacy Policy + Account Deletion -->
+            <div class="text-center mt-3 text-sm">
+                <a href="privacy-policy.html" class="hover:underline hover:opacity-80 transition">
+                    Privacy Policy
+                </a>
+                <span class="mx-1">|</span>
+                <a href="account-deletion.html" class="hover:underline hover:opacity-80 transition">
+                    Account Deletion
+                </a>
+            </div>
+
+            <!-- Copyright -->
+            <p class="text-center text-xs mt-6 opacity-80">
+                © 2025 Madhav Finance. All rights reserved.
+            </p>
+
         </div>
+    </footer>
 
-    </section>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center border-t border-cyan-200/30 mt-12 fade-slide">
-        <p class="text-gray-500 text-sm">
-            &copy; 2025 Madhav Finance. All rights reserved. <br>
-            <span class="text-xs text-gray-400 mt-2 block">This document is for informational purposes only.</span>
-        </p>
-    </section>
-</main>
+    <script>
+        // Auto Active Nav Link
+        document.addEventListener("DOMContentLoaded", () => {
+            const currentPage = window.location.pathname.split("/").pop();
 
-<script>
-    lucide.createIcons();
-</script>
+            // Select all nav links (desktop + mobile)
+            const navLinks = document.querySelectorAll(".nav-link, #mobileMenu a");
+
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute("href");
+
+                // If href matches the current page, add active class
+                if (linkPage === currentPage) {
+                    link.classList.add("active");
+                }
+            });
+        });
+
+        lucide.createIcons();
+    </script>
+
 </body>
+
 </html>

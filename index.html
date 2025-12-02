@@ -67,6 +67,14 @@
             cursor: pointer;
         }
 
+        /*Hero Section*/
+        .gradient-text {
+            background: linear-gradient(135deg, hsl(184 95% 45%) 0%, hsl(200 95% 55%) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         /*Navbar Section*/
         .nav-link {
             position: relative;
@@ -195,13 +203,6 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, hsl(184 95% 45%) 0%, hsl(200 95% 55%) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .btn-primary {
@@ -546,7 +547,7 @@
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="breakdown.html" class="nav-link">Breakdown</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
-                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
             </ul>
 
             <!-- MOBILE MENU ICON -->
@@ -562,12 +563,12 @@
             <a href="index.html" class="py-2 text-lg block">Home</a>
             <a href="breakdown.html" class="py-2 text-lg block">Breakdown</a>
             <a href="contact.html" class="py-2 text-lg block">Contact</a>
-            <a href="about.html" class="py-2 text-lg block">About Us</a>
+            <a href="about.html" class="py-2 text-lg block">About</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-12">
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-12 mt-8">
         <div class="absolute inset-0 z-0"
             style="background: linear-gradient(135deg, hsl(184 95% 45% / 0.1) 0%, hsl(280 65% 60% / 0.05) 50%, hsl(14 90% 65% / 0.1) 100%);">
         </div>
@@ -700,8 +701,8 @@
 
             <!-- Title -->
             <div class="text-center mb-16 fade-slide-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-cyan-600">How It Works</h2>
-                <p class="text-gray-600 text-lg mt-2">Your loan in 3 easy steps</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Your loan in 3 easy steps</p>
             </div>
 
             <!-- Timeline Container -->
@@ -766,11 +767,9 @@
 
             <!-- Title -->
             <div class="text-center mb-12">
-                <h2
-                    class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500">
-                    Loan Calculator
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Loan Calculator
                 </h2>
-                <p class="text-gray-500 text-lg">Adjust your loan and see EMI instantly</p>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Adjust your loan and see EMI instantly</p>
             </div>
 
             <div
@@ -893,13 +892,9 @@
         <div class="container max-w-3xl mx-auto">
             <div class="text-center mb-12 animate-fade-in">
                 <div class="inline-flex items-center gap-2 mb-4">
-                    <svg class="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <h2 class="text-3xl md:text-4xl font-bold">Apply for a Loan</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Apply for a Loan</h2>
                 </div>
-                <p class="text-gray-600 text-lg">Complete your application in 3 simple steps</p>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Complete your application in 3 simple steps</p>
             </div>
 
             <div class="glass-card-strong border-2 rounded-2xl p-8 animate-scale-in">
@@ -927,17 +922,17 @@
                         <div class="space-y-4">
                             <div>
                                 <label class="block text-sm font-medium mb-2">Full Name</label>
-                                <input type="text" id="fullName" class="input-field" placeholder="John Doe" required>
+                                <input type="text" id="fullName" class="input-field" placeholder="Shweta Kumari"
+                                    required>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Email Address</label>
-                                <input type="email" id="email" class="input-field" placeholder="john@example.com"
+                                <input type="email" id="email" class="input-field" placeholder="shweta@example.com"
                                     required>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Phone Number</label>
-                                <input type="tel" id="phone" class="input-field" placeholder="+1 (555) 000-0000"
-                                    required>
+                                <input type="tel" id="phone" class="input-field" placeholder="+91 1234567890" required>
                             </div>
                         </div>
                     </div>
@@ -1027,9 +1022,8 @@
         <div class="max-w-7xl mx-auto px-6 relative z-10">
 
             <!-- Heading -->
-            <h2 class="text-4xl md:text-5xl font-extrabold text-black fade-slide-up animate-delay-1 text-center mb-12">
-                Download Our App
-            </h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-black fade-slide-up animate-delay-1 text-center mb-12">
+                Download Our App</h2>
 
             <!-- Container -->
             <div class="grid md:grid-cols-2 gap-10 items-center">
@@ -1071,7 +1065,7 @@
                     <!-- App Button -->
                     <div class="mt-8">
                         <a href="#"
-                            class="inline-flex items-center gap-3 bg-black text-white px-6 py-3 rounded-xl shadow-lg hover:scale-105 transition-all duration-300 animate-bounce-soft">
+                            class="inline-flex items-center gap-3 bg-black text-white px-6 py-3 rounded-xl shadow-lg hover:scale-105 transition-all duration-300">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
                                 alt="Google Play" class="h-10" />
                         </a>
@@ -1092,9 +1086,9 @@
 
             <!-- Heading -->
             <div class="text-center mb-16 fade-slide-up">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-black">Loan Journey Timeline</h2>
-                <p class="text-gray-600 mt-3 text-lg">Your loan moves through a transparent, fast and secure digital
-                    process</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Loan Journey Timeline</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Your loan moves through a transparent, fast and
+                    secure digital process</p>
             </div>
 
             <!-- Timeline Wrapper -->
@@ -1109,14 +1103,12 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-16 md:gap-0 mt-10">
 
                     <!-- STEP 1 -->
-                    <div class="flex flex-col items-center text-center fade-slide-up">
+                    <div class="flex flex-col items-center text-center fade-slide-up" style="animation-delay: 150ms;">
                         <div class="relative flex justify-center items-center">
                             <div
                                 class="w-16 h-16 rounded-full bg-white shadow-xl flex items-center justify-center border border-cyan-400">
                                 <ion-icon name="document-text-outline" class="text-4xl text-cyan-600"></ion-icon>
-                            </div>
-
-                            <!-- Glowing Node -->
+                             </div>
                             <div
                                 class="absolute bottom-0 translate-y-8 w-6 h-6 bg-cyan-500 rounded-full animate-pulse-glow">
                             </div>
@@ -1181,7 +1173,7 @@
     </section>
 
     <!-- FOOTER SECTION -->
-    <footer class="bg-cyan-600 text-white pt-12 pb-6 mt-16">
+    <footer class="bg-cyan-600 text-white pt-12 pb-6">
 
         <div class="max-w-7xl mx-auto px-6">
             <!-- NAVBAR INSIDE FOOTER SECTION-->
@@ -1190,7 +1182,7 @@
                     <li><a href="index.html" class="hover:underline hover:opacity-80 transition">Home</a></li>
                     <li><a href="breakdown.html" class="hover:underline hover:opacity-80 transition">Breakdown</a></li>
                     <li><a href="contact.html" class="hover:underline hover:opacity-80 transition">Contact</a></li>
-                    <li><a href="about.html" class="hover:underline hover:opacity-80 transition">About Us</a></li>
+                    <li><a href="about.html" class="hover:underline hover:opacity-80 transition">About</a></li>
                 </ul>
             </div>
 
@@ -1258,6 +1250,23 @@
 
 
     <script>
+        // Auto Active Nav Link
+        document.addEventListener("DOMContentLoaded", () => {
+            const currentPage = window.location.pathname.split("/").pop(); // e.g., "about.html"
+
+            // Select all nav links (desktop + mobile)
+            const navLinks = document.querySelectorAll(".nav-link, #mobileMenu a");
+
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute("href");
+
+                // If href matches the current page, add active class
+                if (linkPage === currentPage) {
+                    link.classList.add("active");
+                }
+            });
+        });
+
         /* ---------- MOBILE MENU ---------- */
         function toggleMobileMenu() {
             const menu = document.getElementById("mobileMenu");
