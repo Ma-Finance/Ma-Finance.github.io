@@ -379,7 +379,26 @@
         }
       });
     });
+    /* MOBILE MENU */
+    function toggleMobileMenu() {
+      const menu = document.getElementById("mobileMenu");
+      menu.classList.toggle("hidden");
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      const activePage = window.location.pathname.split("/").pop();
+      const links = document.querySelectorAll(".nav-link");
+
+      links.forEach(link => {
+        let linkPage = link.getAttribute("href");
+
+        if (linkPage === activePage) {
+          link.classList.add("text-cyan-400", "font-bold");
+        }
+      });
+    });
+
   </script>
 
 </body>
+
 </html>

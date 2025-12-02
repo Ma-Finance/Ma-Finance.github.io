@@ -277,7 +277,7 @@
         </section>
     </main>
 
-        <!-- FOOTER SECTION -->
+    <!-- FOOTER SECTION -->
     <footer class="bg-cyan-600 text-white pt-12 pb-6">
 
         <div class="max-w-7xl mx-auto px-6">
@@ -354,6 +354,24 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
     <script>
+        /*  MOBILE MENU */
+        function toggleMobileMenu() {
+            const menu = document.getElementById("mobileMenu");
+            menu.classList.toggle("hidden");
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            const activePage = window.location.pathname.split("/").pop();
+            const links = document.querySelectorAll(".nav-link");
+
+            links.forEach(link => {
+                let linkPage = link.getAttribute("href");
+
+                if (linkPage === activePage) {
+                    link.classList.add("text-cyan-400", "font-bold");
+                }
+            });
+        });
+
         lucide.createIcons();
     </script>
 </body>

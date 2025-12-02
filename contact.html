@@ -239,9 +239,9 @@
     <!--Details-->
     <main>
         <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 text-center">
-           <div class="text-4xl md:text-5xl font-extrabold mb-4 mt-10 fade-slide">
-            <h1 class="gradient-text">Contact Us</h1>
-           </div> 
+            <div class="text-4xl md:text-5xl font-extrabold mb-4 mt-10 fade-slide">
+                <h1 class="gradient-text">Contact Us</h1>
+            </div>
             <p class="text-lg text-gray-500 fade-slide">We're here to help! Reach out to us via email or phone.</p>
         </section>
 
@@ -301,7 +301,7 @@
         </section>
     </main>
 
-        <!-- FOOTER SECTION -->
+    <!-- FOOTER SECTION -->
     <footer class="bg-cyan-600 text-white pt-12 pb-6">
 
         <div class="max-w-7xl mx-auto px-6">
@@ -391,6 +391,24 @@
                 // If href matches the current page, add active class
                 if (linkPage === currentPage) {
                     link.classList.add("active");
+                }
+            });
+        });
+
+        /* MOBILE MENU */
+        function toggleMobileMenu() {
+            const menu = document.getElementById("mobileMenu");
+            menu.classList.toggle("hidden");
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            const activePage = window.location.pathname.split("/").pop();
+            const links = document.querySelectorAll(".nav-link");
+
+            links.forEach(link => {
+                let linkPage = link.getAttribute("href");
+
+                if (linkPage === activePage) {
+                    link.classList.add("text-cyan-400", "font-bold");
                 }
             });
         });
