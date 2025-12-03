@@ -1333,7 +1333,7 @@
             document.getElementById("emiSummary").innerText =
                 "₹ " + data.emi.toLocaleString();
 
-            updateCircle((index + 1) * 11);
+            updateCircle((index * 11.25) + 10);
         }
 
         function syncAmountFromBox() {
